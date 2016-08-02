@@ -1,4 +1,4 @@
-defmodule Phubme.Mixfile do
+defmodule PhubMe.Mixfile do
   use Mix.Project
 
   def project do
@@ -16,8 +16,8 @@ defmodule Phubme.Mixfile do
   end
 
   def application do
-    [[:logger, :httpotion, :cowboy, :plug],
-     mod: {Phubme.Api, []}]
+    [applications: [:logger, :cowboy, :plug],
+     mod: {PhubMe.Api, []}]
   end
 
   defp deps do

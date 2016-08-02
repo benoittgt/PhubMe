@@ -1,4 +1,4 @@
-defmodule Phubme.Web do
+defmodule PhubMe.Web do
   use Plug.Router
   require Logger
 
@@ -11,12 +11,18 @@ defmodule Phubme.Web do
   end
 
   def start_link do
-    {:ok, _} = Plug.Adapters.Cowboy.http Phubme.Web, []
+    {:ok, _} = Plug.Adapters.Cowboy.http PhubMe.Web, []
   end
 
   get "/" do
     conn
     |> send_resp(200, "ok")
+    |> halt
+  end
+
+  match _ do
+    conn
+    |> send_resp(404, "Nothing here")
     |> halt
   end
 end
