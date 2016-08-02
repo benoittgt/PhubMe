@@ -22,7 +22,7 @@ defmodule PhubMe.Web do
 
   match _ do
     conn
-    |> send_resp(404, "Nothing here")
+    |> send_resp(404, "")
     |> halt
   end
 end

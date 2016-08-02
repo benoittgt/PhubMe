@@ -16,4 +16,13 @@ defmodule MyPlugTest do
     assert conn.status == 200
     assert conn.resp_body == "ok"
   end
+
+  test "404 when wrong route" do
+    conn = conn(:get, "/yep")
+    conn = PhubMe.Web.call(conn, @opts)
+
+    assert conn.state == :sent
+    assert conn.status == 404
+    assert conn.resp_body == ""
+  end
 end
