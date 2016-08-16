@@ -16,7 +16,7 @@ defmodule PhubMe.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :cowboy, :plug],
+    [applications: [:logger, :cowboy, :plug, :poison],
      mod: {PhubMe.Api, []}]
   end
 

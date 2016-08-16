@@ -3,6 +3,8 @@ defmodule PhubMe.Web do
   require Logger
 
   plug Plug.Logger
+  plug Plug.Parsers, parsers: [Plug.Parsers.URLENCODED, Plug.Parsers.JSON],
+                     json_decoder: Poison
   plug :match
   plug :dispatch
 
@@ -14,8 +16,10 @@ defmodule PhubMe.Web do
     {:ok, _} = Plug.Adapters.Cowboy.http PhubMe.Web, []
   end
 
-  get "/" do
+  post "/" do
+    IO.inspect conn.params
     conn
+    |> put_resp_content_type("application/json")
     |> send_resp(200, "ok")
     |> halt
   end
