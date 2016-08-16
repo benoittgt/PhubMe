@@ -13,7 +13,7 @@ defmodule PhubMe.Web do
   end
 
   def start_link do
-    {:ok, _} = Plug.Adapters.Cowboy.http PhubMe.Web, []
+    {:ok, _ } = Plug.Adapters.Cowboy.http PhubMe.Web, []
   end
 
   post "/" do
