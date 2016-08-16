@@ -17,7 +17,7 @@ defmodule PhubMe.Web do
   end
 
   post "/" do
-    IO.inspect conn.params
+    IO.inspect conn
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, "ok")
