@@ -1,6 +1,8 @@
 # Phubme
 
-**TODO: Add description**
+[![Build Status](https://travis-ci.org/benoittgt/PhubMe.svg)](https://travis-ci.org/benoittgt/PhubMe)
+
+Notify slack user when you are mentionned in a github comment
 
 ## Installation
 
