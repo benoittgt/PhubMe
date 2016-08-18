@@ -5,7 +5,7 @@ defmodule PhubMe.CommentParser do
     IO.puts "Processing comment : \"" <> comment <> "\" from " <> sender
     comment
     |> nickname_present
-    # |> extract_nickname
+    |> extract_nickname
     # |> foward_comment(sender, comment_source)
   end
 
@@ -18,5 +18,12 @@ defmodule PhubMe.CommentParser do
     else
       {:no_nickname_found, comment}
     end
+  end
+
+  def extract_nickname({:nickname_found, comment}) do
+  end
+
+  def extract_nickname({:no_nickname_found, comment}) do
+    IO.puts "handle no nickname_found"
   end
 end
