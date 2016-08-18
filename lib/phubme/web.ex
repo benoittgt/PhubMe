@@ -19,6 +19,7 @@ defmodule PhubMe.Web do
   post "/" do
     # IO.inspect conn.req_headers
     # How to test that it has been properly sent to ...
+    # IO.inspect conn.body_params
     PhubMe.CommentParser.process_comment(conn.body_params)
     conn
     |> put_resp_content_type("application/json")
