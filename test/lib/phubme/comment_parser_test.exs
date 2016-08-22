@@ -5,6 +5,7 @@ defmodule CommentParser do
   import ExUnit.CaptureIO
 
   defp comment, do: "Hey @HannahArrendt you should take a look"
+  defp comment_without_nickame, do: "Hello Hannah"
   defp body_params do
   %{ "comment" =>
     %{ "body" => comment,
@@ -19,14 +20,25 @@ defmodule CommentParser do
     end
   end
 
-  describe "PhubMe.CommentParser.nickname_present/1" do
-    test "with a nickname" do
-      assert PhubMe.CommentParser.nickname_present(comment) == {:nickname_found, comment}
+  describe "PhubMe.CommentParser.nicknames_present/1" do
+    test "with a nicknames" do
+      assert PhubMe.CommentParser.nicknames_present(comment) == {:nicknames_found, comment}
     end
 
-    test "without a nickname" do
-      comment_without_nickame = "Hello Hannah"
-      assert PhubMe.CommentParser.nickname_present(comment_without_nickame) == {:no_nickname_found, comment_without_nickame}
+    test "without a nicknames" do
+      assert PhubMe.CommentParser.nicknames_present(comment_without_nickame) == {:no_nicknames_found, comment_without_nickame}
+    end
+  end
+
+  describe "PhubMe.CommentParser.extract_nicknames/2" do
+    test "nicknames found" do
+      assert PhubMe.CommentParser.extract_nicknames({:nicknames_found, comment}) == {comment, [["@HannahArrendt"]]}
+    end
+
+    test "nicknames not found" do
+      assert capture_io(fn ->
+        PhubMe.CommentParser.extract_nicknames({:no_nicknames_found, comment_without_nickame})
+      end) == "No nicknames found in message\n"
     end
   end
 end

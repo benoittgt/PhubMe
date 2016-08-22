@@ -2,28 +2,34 @@ defmodule PhubMe.CommentParser do
   def process_comment(body_params) do
     comment = get_in(body_params, ["comment", "body"])
     sender  = get_in(body_params, ["comment", "user", "login"])
+    comment_source = get_in(body_params, ["comment", "html_url"])
     IO.puts "Processing comment : \"" <> comment <> "\" from " <> sender
     comment
-    |> nickname_present
-    |> extract_nickname
-    # |> foward_comment(sender, comment_source)
+    |> nicknames_present
+    |> extract_nicknames
+    |> forward_comment(sender, comment_source) # is it something I can do?
   end
 
-  # private?
-  def nickname_present(comment) do
-    # Use http://elixir-lang.org/docs/stable/elixir/Regex.html#scan/3
-    # Regex.scan ~r{@([A-Za-z0-9_]+)}, comment, capture: :first
+  # public? But if I turn them private how can test them
+  def nicknames_present(comment) do
     if Regex.match?(~r{@([A-Za-z0-9_]+)}, comment) do
-      {:nickname_found, comment}
+      {:nicknames_found, comment}
     else
-      {:no_nickname_found, comment}
+      {:no_nicknames_found, comment}
     end
   end
 
-  def extract_nickname({:nickname_found, comment}) do
+  def extract_nicknames({:nicknames_found, comment}) do
+    nicknames = Regex.scan ~r{@([A-Za-z0-9_]+)}, comment, capture: :first
+    {comment, nicknames}
   end
 
-  def extract_nickname({:no_nickname_found, comment}) do
-    IO.puts "handle no nickname_found"
+  def extract_nicknames({:no_nicknames_found, _}) do
+    IO.puts "No nicknames found in message"
+  end
+
+  def forward_comment(first_arg, sender, comment_source) do
+    IO.inspect first_arg # I should get the tuple from extract_nicknames no?
+    IO.inspect "Ici" <> sender <> comment_source
   end
 end
