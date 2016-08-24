@@ -4,41 +4,30 @@ defmodule CommentParser do
   use ExUnit.Case, async: true
   import ExUnit.CaptureIO
 
-  defp comment, do: "Hey @HannahArrendt you should take a look"
-  defp comment_without_nickame, do: "Hello Hannah"
-  defp body_params do
-  %{ "comment" =>
-    %{ "body" => comment,
-       "user" => %{ "login" => "baxterthehacker"} }}
+  defp comment_with_nicknames, do: "Hey @HannahArrendt you should take a look at @lucie"
+  defp comment_without_nickname, do: "Hello Hannah"
+  defp body_params(comment) do
+    %{ "comment" =>
+      %{ "body" => comment,
+        "html_url" => "https://github.com/comment",
+        "user" => %{ "login" => "baxterthehacker"} }}
   end
 
   describe "PhubMe.CommentParser.process_comment/1" do
     test "Comment properly displayed" do
       assert capture_io(fn ->
-        PhubMe.CommentParser.process_comment(body_params)
-      end) == "Processing comment : \"Hey @HannahArrendt you should take a look\" from baxterthehacker\n"
-    end
-  end
-
-  describe "PhubMe.CommentParser.nicknames_present/1" do
-    test "with a nicknames" do
-      assert PhubMe.CommentParser.nicknames_present(comment) == {:nicknames_found, comment}
+        PhubMe.CommentParser.process_comment(body_params(comment_with_nicknames))
+      end) == "Processing comment : \"Hey @HannahArrendt you should take a look at @lucie\" from baxterthehacker\n"
     end
 
-    test "without a nicknames" do
-      assert PhubMe.CommentParser.nicknames_present(comment_without_nickame) == {:no_nicknames_found, comment_without_nickame}
-    end
-  end
-
-  describe "PhubMe.CommentParser.extract_nicknames/2" do
-    test "nicknames found" do
-      assert PhubMe.CommentParser.extract_nicknames({:nicknames_found, comment}) == {comment, [["@HannahArrendt"]]}
+    test "Parse message with two nicknames" do
+      assert PhubMe.CommentParser.process_comment(body_params(comment_with_nicknames)) ==
+        {{:ok, comment_with_nicknames, [["@HannahArrendt"], ["@lucie"]]}, "baxterthehacker", "https://github.com/comment"}
     end
 
-    test "nicknames not found" do
-      assert capture_io(fn ->
-        PhubMe.CommentParser.extract_nicknames({:no_nicknames_found, comment_without_nickame})
-      end) == "No nicknames found in message\n"
+    test "Parse message with no nicknames" do
+      assert PhubMe.CommentParser.process_comment(body_params(comment_without_nickname)) ==
+        "stop here"
     end
   end
 end

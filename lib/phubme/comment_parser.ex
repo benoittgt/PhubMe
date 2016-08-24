@@ -4,14 +4,16 @@ defmodule PhubMe.CommentParser do
     sender  = get_in(body_params, ["comment", "user", "login"])
     comment_source = get_in(body_params, ["comment", "html_url"])
     IO.puts "Processing comment : \"" <> comment <> "\" from " <> sender
-    comment
-    |> nicknames_present
-    |> extract_nicknames
-    |> forward_comment(sender, comment_source) # is it something I can do?
+    comment = comment
+              |> nicknames_present
+              |> extract_nicknames
+    case comment do
+      {:ok, full_comment, nicknames} -> {comment, sender, comment_source}
+      {:error, _} -> "stop here"
+    end
   end
 
-  # public? But if I turn them private how can test them
-  def nicknames_present(comment) do
+  defp nicknames_present(comment) do
     if Regex.match?(~r{@([A-Za-z0-9_]+)}, comment) do
       {:nicknames_found, comment}
     else
@@ -19,17 +21,12 @@ defmodule PhubMe.CommentParser do
     end
   end
 
-  def extract_nicknames({:nicknames_found, comment}) do
+  defp extract_nicknames({:nicknames_found, comment}) do
     nicknames = Regex.scan ~r{@([A-Za-z0-9_]+)}, comment, capture: :first
-    {comment, nicknames}
+    {:ok, comment, nicknames}
   end
 
-  def extract_nicknames({:no_nicknames_found, _}) do
-    IO.puts "No nicknames found in message"
-  end
-
-  def forward_comment(first_arg, sender, comment_source) do
-    IO.inspect first_arg # I should get the tuple from extract_nicknames no?
-    IO.inspect "Ici" <> sender <> comment_source
+  defp extract_nicknames({:no_nicknames_found, _}) do
+    {:error, "No nicknames found in message"}
   end
 end
