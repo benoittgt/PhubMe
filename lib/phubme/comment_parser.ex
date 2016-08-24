@@ -8,7 +8,7 @@ defmodule PhubMe.CommentParser do
               |> nicknames_present
               |> extract_nicknames
     case comment do
-      {:ok, full_comment, nicknames} -> {comment, sender, comment_source}
+      {:ok, full_comment, nicknames} -> {full_comment, nicknames, sender, comment_source}
       {:error, _} -> "stop here"
     end
   end

@@ -22,7 +22,7 @@ defmodule CommentParser do
 
     test "Parse message with two nicknames" do
       assert PhubMe.CommentParser.process_comment(body_params(comment_with_nicknames)) ==
-        {{:ok, comment_with_nicknames, [["@HannahArrendt"], ["@lucie"]]}, "baxterthehacker", "https://github.com/comment"}
+        {comment_with_nicknames, [["@HannahArrendt"], ["@lucie"]], "baxterthehacker", "https://github.com/comment"}
     end
 
     test "Parse message with no nicknames" do
