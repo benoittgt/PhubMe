@@ -2,28 +2,31 @@ defmodule PhubMe.CommentParser do
   def process_comment(body_params) do
     comment = get_in(body_params, ["comment", "body"])
     sender  = get_in(body_params, ["comment", "user", "login"])
+    comment_source = get_in(body_params, ["comment", "html_url"])
     IO.puts "Processing comment : \"" <> comment <> "\" from " <> sender
-    comment
-    |> nickname_present
-    |> extract_nickname
-    # |> foward_comment(sender, comment_source)
-  end
-
-  # private?
-  def nickname_present(comment) do
-    # Use http://elixir-lang.org/docs/stable/elixir/Regex.html#scan/3
-    # Regex.scan ~r{@([A-Za-z0-9_]+)}, comment, capture: :first
-    if Regex.match?(~r{@([A-Za-z0-9_]+)}, comment) do
-      {:nickname_found, comment}
-    else
-      {:no_nickname_found, comment}
+    comment = comment
+              |> nicknames_present
+              |> extract_nicknames
+    case comment do
+      {:ok, full_comment, nicknames} -> {full_comment, nicknames, sender, comment_source}
+      {:error, _} -> "stop here"
     end
   end
 
-  def extract_nickname({:nickname_found, comment}) do
+  defp nicknames_present(comment) do
+    if Regex.match?(~r{@([A-Za-z0-9_]+)}, comment) do
+      {:nicknames_found, comment}
+    else
+      {:no_nicknames_found, comment}
+    end
   end
 
-  def extract_nickname({:no_nickname_found, comment}) do
-    IO.puts "handle no nickname_found"
+  defp extract_nicknames({:nicknames_found, comment}) do
+    nicknames = Regex.scan ~r{@([A-Za-z0-9_]+)}, comment, capture: :first
+    {:ok, comment, nicknames}
+  end
+
+  defp extract_nicknames({:no_nicknames_found, _}) do
+    {:error, "No nicknames found in message"}
   end
 end
