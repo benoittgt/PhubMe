@@ -1,4 +1,4 @@
 use Mix.Config
 
-# config :phubme, 
-# HannahSlack: :HannahGithub
+# config :phubme,
+# "@Hannah": "@HannahSlack"

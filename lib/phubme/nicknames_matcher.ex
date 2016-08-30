@@ -21,7 +21,6 @@ defmodule PhubMe.NicknamesMatcher do
   end
 
   defp nickname_from_mix_config(github_nick_head) do
-    # IO.inspect Application.fetch_env(:phubme, String.to_atom(List.first(github_nick_head)))
     case Application.fetch_env(:phubme, String.to_atom(List.first(github_nick_head))) do
       {:ok, slack_nickname} -> [slack_nickname]
       :error -> :error
