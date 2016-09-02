@@ -6,10 +6,10 @@ defmodule NicknamesMatcher do
   defp comment_with_nicknames, do: "Hey @HannahArrendt you should take a look at @lucie"
   defp comment_without_nickname, do: "Hello Hannah"
   defp tuples_with_matching_nicknames do
-    {comment_with_nicknames, ["@Hannah", "@lucie"], "baxterthehacker", "https://github.com/comment"}
+    {comment_with_nicknames, ["@hannah", "@lucie"], "baxterthehacker", "https://github.com/comment"}
   end
   defp tuples_with_no_matching_nicknames do
-    {comment_with_nicknames, ["@Hnnah", "@luie"], "baxterthehacker", "https://github.com/comment"}
+    {comment_with_nicknames, ["@hnnah", "@luie"], "baxterthehacker", "https://github.com/comment"}
   end
   defp tuples_with_no_nicknames do
     {comment_without_nickname, [], "baxterthehacker", "https://github.com/comment"}
@@ -22,7 +22,7 @@ defmodule NicknamesMatcher do
 
     test "nicknames received with two matching nicknames" do
       assert PhubMe.NicknamesMatcher.match_nicknames(tuples_with_matching_nicknames) ==
-        {:ok, comment_with_nicknames, [["@Hannah", "@HannahSlack"], ["@lucie", "@lulu"]], "baxterthehacker", "https://github.com/comment"}
+        {:ok, comment_with_nicknames, ["@hannah", "@lucie"], "baxterthehacker", "https://github.com/comment"}
     end
 
     test "nicknames received with no matching nickname" do

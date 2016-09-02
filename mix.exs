@@ -16,7 +16,7 @@ defmodule PhubMe.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :cowboy, :plug, :poison],
+    [applications: [:logger, :cowboy, :plug, :poison, :slack],
      mod: {PhubMe.Api, []}]
   end
 
@@ -31,6 +31,8 @@ defmodule PhubMe.Mixfile do
       {:dogma, "~> 0.1", only: :dev},
       {:cowboy, "~> 1.0.3"},
       {:plug, "~> 1.0"},
+      {:slack, "~> 0.7.0"},
+      {:websocket_client, git: "https://github.com/jeremyong/websocket_client"}
     ]
   end
 end

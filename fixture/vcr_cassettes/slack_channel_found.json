@@ -1,0 +1,40 @@
+[
+  {
+    "request": {
+      "body": "token=xoxb-75791569751-anZuQDxS7kZ4VqOekromA9yr&text=You%27ve+been+mentionned+on+https%3a%2f%2fgithub.com%2fcomment+from+baxterthehacker&channel=@hannahslack",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://slack.com/api/chat.postMessage"
+    },
+    "response": {
+      "body": "{\"ok\":true,\"channel\":\"D2ASG21BP\",\"ts\":\"1473715749.000009\",\"message\":{\"text\":\"You've been mentionned on <https:\\/\\/github.com\\/comment> from baxterthehacker\",\"username\":\"bot\",\"bot_id\":\"B27P9GRGX\",\"type\":\"message\",\"subtype\":\"bot_message\",\"ts\":\"1473715749.000009\"},\"warning\":\"superfluous_charset\"}",
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "294",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Content-Security-Policy": "referrer no-referrer;",
+        "Date": "Mon, 12 Sep 2016 21:29:09 GMT",
+        "Expires": "Mon, 26 Jul 1997 05:00:00 GMT",
+        "Pragma": "no-cache",
+        "Server": "Apache",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Accepted-OAuth-Scopes": "chat:write:bot,post",
+        "X-Content-Type-Options": "nosniff",
+        "X-OAuth-Scopes": "identify,read,post,client,apps",
+        "X-Slack-Backend": "h",
+        "X-Slack-Req-Id": "c65129ff-7c0b-4064-a316-3f7e9a492218",
+        "X-XSS-Protection": "0",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 bceb78db75768adbffcc6abd66f8e5de.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "OOCsttrIcqwUYU1SioMtLbv9Ys7IHALaCqTLNV8Zyj2AiwsrF2GDTw=="
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
