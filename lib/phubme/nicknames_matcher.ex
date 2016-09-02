@@ -8,12 +8,14 @@ defmodule PhubMe.NicknamesMatcher do
   end
 
   defp matching_nicknames([github_nick_head | github_nick_tail], matched_nicknames, array_position) do
-    if nickname_from_mix_config(github_nick_head) == :error do
-      IO.puts "No matching nickname found for " <> List.first(github_nick_head)
-    else
-      matched_nicknames = List.insert_at(matched_nicknames, array_position, (github_nick_head ++ nickname_from_mix_config(github_nick_head)))
-    end
-    matching_nicknames(github_nick_tail, matched_nicknames, array_position + 1)
+    updated_matched_nicknames =
+      if nickname_from_mix_config(github_nick_head) == :error do
+        IO.puts "No matching nickname found for " <> List.first(github_nick_head)
+        matched_nicknames
+      else
+        List.insert_at(matched_nicknames, array_position, (github_nick_head ++ nickname_from_mix_config(github_nick_head)))
+      end
+    matching_nicknames(github_nick_tail, updated_matched_nicknames, array_position + 1)
   end
 
   defp matching_nicknames([], matched_nicknames, _) do
