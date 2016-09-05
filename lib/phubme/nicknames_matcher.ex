@@ -7,18 +7,19 @@ defmodule PhubMe.NicknamesMatcher do
     {:no_nicknames_found}
   end
 
-  defp matching_nicknames([ [ nickname ] | tail]) do
-    case nickname_from_mix_config(nickname) do
-      {:ok, matching_nickname} ->
-        [ [ nickname, matching_nickname ] | matching_nicknames(tail) ]
-      :error ->
-        IO.puts "No matching nickname found for " <> nickname
-        matching_nicknames(tail)
-    end
+  defp matching_nicknames(list, acc \\ [])
+
+  defp matching_nicknames([ [ nickname ] | tail], acc) do
+    next_acc =
+      case nickname_from_mix_config(nickname) do
+        {:ok, matching_nickname} -> [ [ nickname, matching_nickname ] | acc]
+        :error -> acc
+      end
+    matching_nicknames(tail, next_acc)
   end
 
-  defp matching_nicknames([]) do
-    []
+  defp matching_nicknames([], acc) do
+    Enum.reverse(acc)
   end
 
   defp nickname_from_mix_config(nickname) do
