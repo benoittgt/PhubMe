@@ -1,4 +1,6 @@
 defmodule PhubMe.CommentParser do
+  @nickames_regex ~r{@([A-Za-z0-9_]+)}
+
   def process_comment(body_params) do
     comment = get_in(body_params, ["comment", "body"])
     sender = get_in(body_params, ["comment", "user", "login"])
@@ -9,7 +11,7 @@ defmodule PhubMe.CommentParser do
   end
 
   defp extract_nicknames(comment) do
-    matches = Regex.scan(~r{@([A-Za-z0-9_]+)}, comment, capture: :first)
+    matches = Regex.scan(@nickames_regex, comment, capture: :first)
     matches |> List.flatten
   end
 end
