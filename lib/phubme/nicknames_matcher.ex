@@ -12,7 +12,7 @@ defmodule PhubMe.NicknamesMatcher do
   defp matching_nicknames([nickname | tail], acc) do
     next_acc =
       case nickname_from_mix_config(nickname) do
-        {:ok, matching_nickname} -> [ [ nickname, matching_nickname ] | acc]
+        {:ok, matching_nickname} -> [matching_nickname | acc]
         :error -> acc
       end
     matching_nicknames(tail, next_acc)
