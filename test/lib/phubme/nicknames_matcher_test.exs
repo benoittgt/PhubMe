@@ -22,12 +22,12 @@ defmodule NicknamesMatcher do
 
     test "nicknames received with two matching nicknames" do
       assert PhubMe.NicknamesMatcher.match_nicknames(tuples_with_matching_nicknames) ==
-        {:ok, comment_with_nicknames, ["@hannahslack", "@lulu"], "baxterthehacker", "https://github.com/comment"}
+        {comment_with_nicknames, ["@hannahslack", "@lulu"], "baxterthehacker", "https://github.com/comment"}
     end
 
     test "nicknames received with no matching nickname" do
       assert PhubMe.NicknamesMatcher.match_nicknames(tuples_with_no_matching_nicknames) ==
-        {:ok, comment_with_nicknames, [], "baxterthehacker", "https://github.com/comment"}
+        {comment_with_nicknames, [], "baxterthehacker", "https://github.com/comment"}
     end
   end
 end

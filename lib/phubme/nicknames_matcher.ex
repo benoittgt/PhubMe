@@ -4,7 +4,7 @@ defmodule PhubMe.NicknamesMatcher do
   end
 
   def match_nicknames({full_comment, github_nicknames, sender, comment_parsed}) do
-    {:ok, full_comment, matching_nicknames(github_nicknames), sender, comment_parsed }
+    {full_comment, matching_nicknames(github_nicknames), sender, comment_parsed }
   end
 
   defp matching_nicknames(list, acc \\ [])

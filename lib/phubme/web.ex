@@ -18,7 +18,8 @@ defmodule PhubMe.Web do
 
   post "/" do
     parsed_comment = PhubMe.CommentParser.process_comment(conn.body_params)
-    IO.inspect parsed_comment
+                     |> PhubMe.NicknamesMatcher.match_nicknames
+                     |> PhubMe.Slack.send_private_message
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, "ok")

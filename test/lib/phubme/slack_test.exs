@@ -1,16 +1,16 @@
 ExUnit.start
 
-defmodule Slack do
+defmodule PhubMeSlack do
   use ExUnit.Case, async: true
   import ExUnit.CaptureIO
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
   defp full_params_with_nicks do
-    {:ok, "comment_with_nicknames", [["@hh", "@hanaack"], ["@lucie", "@lulu"]], "baxterthehacker", "https://github.com/comment"}
+    {"comment_with_nicknames", ["@hanaack", "@lulu"], "baxterthehacker", "https://github.com/comment"}
   end
 
   defp full_params_with_correct_nicks do
-    {:ok, "comment_with_nicknames", [["@hannah", "@hannahslack"], ["@benoit", "@benoit"]], "baxterthehacker", "https://github.com/comment"}
+    {"comment_with_nicknames", ["@hannahslack", "@benoit"], "baxterthehacker", "https://github.com/comment"}
   end
 
   setup_all do
