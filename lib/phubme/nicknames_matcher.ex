@@ -1,15 +1,15 @@
 defmodule PhubMe.NicknamesMatcher do
+  def match_nicknames({_, [], _, _}) do
+    {:no_nicknames_found}
+  end
+
   def match_nicknames({full_comment, github_nicknames, sender, comment_parsed}) do
     {:ok, full_comment, matching_nicknames(github_nicknames), sender, comment_parsed }
   end
 
-  def match_nicknames(_) do
-    {:no_nicknames_found}
-  end
-
   defp matching_nicknames(list, acc \\ [])
 
-  defp matching_nicknames([ [ nickname ] | tail], acc) do
+  defp matching_nicknames([nickname | tail], acc) do
     next_acc =
       case nickname_from_mix_config(nickname) do
         {:ok, matching_nickname} -> [ [ nickname, matching_nickname ] | acc]
