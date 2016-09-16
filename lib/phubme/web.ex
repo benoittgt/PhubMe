@@ -17,11 +17,9 @@ defmodule PhubMe.Web do
   end
 
   post "/" do
-    # IO.inspect conn.req_headers
-    # How to test that it has been properly sent to ...
-    # IO.inspect conn.body_params
-    parsed_comment = PhubMe.CommentParser.process_comment(conn.body_params)
-    IO.inspect parsed_comment
+    PhubMe.CommentParser.process_comment(conn.body_params)
+    |> PhubMe.NicknamesMatcher.match_nicknames
+    |> PhubMe.Slack.send_private_message
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, "ok")

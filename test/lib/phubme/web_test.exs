@@ -1,5 +1,5 @@
 defmodule PhubMe.WebTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
   use Plug.Test
 
   @opts PhubMe.Web.init([])

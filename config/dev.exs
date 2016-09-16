@@ -1,4 +1,4 @@
 use Mix.Config
 
-# config :phubme,
-# "@Hannah": "@HannahSlack"
+config :slack, api_token: "xoxb-7579156***********************omA9yr"
+config :phubme, "@Hannah": "@HannahSlack"
