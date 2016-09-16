@@ -1,4 +1,6 @@
 use Mix.Config
 
 # config :phubme,
-# HannahSlack: :HannahGithub
+config :slack, api_token: System.get_env("phub_me_slack_api_token") || ""
+config :phubme,
+"@benoittgt": "@" <> System.get_env("benoittgt") || ""
