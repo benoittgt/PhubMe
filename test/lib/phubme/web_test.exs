@@ -9,7 +9,7 @@ defmodule PhubMe.WebTest do
    {"content-type", "application/json"}]
 
   test "returns ok when posting / with params" do
-    conn = conn(:post, "/", @github_issue_comment_request_json)
+    conn = conn(:post, "/phubme", @github_issue_comment_request_json)
             |> put_req_header("x-github-event", "issue_comment")
             |> put_req_header("content-type", "application/json")
     conn = PhubMe.Web.call(conn, @opts)

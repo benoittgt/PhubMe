@@ -16,7 +16,7 @@ defmodule PhubMe.Web do
     {:ok, _ } = Plug.Adapters.Cowboy.http PhubMe.Web, []
   end
 
-  post "/" do
+  post "/phubme" do
     PhubMe.CommentParser.process_comment(conn.body_params)
     |> PhubMe.NicknamesMatcher.match_nicknames
     |> PhubMe.Slack.send_private_message
