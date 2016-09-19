@@ -30,6 +30,7 @@ defmodule PhubMe.Mixfile do
       {:mix_test_watch, "~> 0.2", only: :dev},
       {:dogma, "~> 0.1", only: :dev},
       {:cowboy, "~> 1.0.3"},
+      {:dogma, "~> 0.1", only: :dev},
       {:plug, "~> 1.0"},
       {:slack, "~> 0.7.0"},
       {:websocket_client, git: "https://github.com/jeremyong/websocket_client"}
