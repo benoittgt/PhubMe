@@ -3,6 +3,11 @@ ExUnit.start
 defmodule NicknamesMatcher do
   use ExUnit.Case, async: true
 
+  setup_all do
+    System.put_env("hannah", "hannahslack")
+    System.put_env("lucie", "lulu")
+  end
+
   defp comment_with_nicknames, do: "Hey @HannahArrendt you should take a look at @lucie"
   defp comment_without_nickname, do: "Hello Hannah"
   defp tuples_with_matching_nicknames do

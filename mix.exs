@@ -3,9 +3,12 @@ defmodule PhubMe.Mixfile do
 
   def project do
     [app: :phubme,
-     version: "0.0.1",
-     elixir: "~> 1.2",
+     version: "0.0.2",
+     elixir: "~> 1.3",
      name: "phubme",
+     description: "Notify mentionned github user in slack",
+     licences: "MIT",
+     maintainers: "Benoit Tigeot",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps,
@@ -30,6 +33,7 @@ defmodule PhubMe.Mixfile do
       {:mix_test_watch, "~> 0.2", only: :dev},
       {:dogma, "~> 0.1", only: :dev},
       {:cowboy, "~> 1.0.3"},
+      {:dogma, "~> 0.1", only: :dev},
       {:plug, "~> 1.0"},
       {:slack, "~> 0.7.0"},
       {:websocket_client, git: "https://github.com/jeremyong/websocket_client"}
