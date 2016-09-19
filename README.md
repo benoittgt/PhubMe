@@ -20,3 +20,16 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
           [applications: [:phubme]]
         end
 
+## Setup
+
+To use PhuMe you need to get first a bot token from Slack. Create one and get the token.
+
+In you env add ENV variables for slack `PHUBME_SLACK_TOKEN` as Slack bot token.
+Also add nicknames like 'export mynicknameongithub=mynicknameonslack'. **Export variables without `@`.**
+
+Then in github in webhooks add configuration for your Phubme. `https://myserver.io/phubme`, `application/json` only "Issue comment".
+
+Then try it.
+
+Feel free to open issue and PR.
+
