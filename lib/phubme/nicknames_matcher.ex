@@ -12,8 +12,8 @@ defmodule PhubMe.NicknamesMatcher do
   defp matching_nicknames([nickname | tail], acc) do
     next_acc =
       case nickname_from_mix_config(nickname) do
-        {:ok, matching_nickname} -> [matching_nickname | acc]
-        :error -> acc
+        nil -> acc
+        matching_nickname -> ["@#{matching_nickname}" | acc]
       end
     matching_nicknames(tail, next_acc)
   end
@@ -23,6 +23,6 @@ defmodule PhubMe.NicknamesMatcher do
   end
 
   defp nickname_from_mix_config(nickname) do
-    Application.fetch_env(:phubme, String.to_atom(nickname))
+    System.get_env(String.trim_leading(nickname, "@"))
   end
 end
