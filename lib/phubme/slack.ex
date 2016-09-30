@@ -1,3 +1,4 @@
+require IEx;
 defmodule PhubMe.Slack do
   def send_private_message({_comment, [], _sender, _source}) do
     IO.puts "All procceed"
@@ -5,7 +6,10 @@ defmodule PhubMe.Slack do
 
   def send_private_message({ comment, [nick_head | nick_tail], sender, source}) do
     case Slack.Web.Chat.post_message(nick_head, formated_message(comment, sender, source), %{token: slack_token}) do
-      %{"ok" => false} -> IO.puts "Not matching channel with the nickname " <> nick_head <> ". Are you sure it exists?"
+      #  %{"error" => "invalid_auth", "ok" => false, "warning" => "superfluous_charset"}
+      %{"error" => "invalid_auth"} -> IO.puts "Invalide auth"
+      # %{"ok" => false} -> IO.puts "Not matching channel with the nickname " <> nick_head <> ". Are you sure it exists?"
+      x -> IO.puts "here is a list: #{inspect x}"
       _ -> IO.puts "Matching channel found."
     end
     send_private_message({comment, nick_tail, sender, source})
