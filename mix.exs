@@ -47,7 +47,6 @@ defmodule PhubMe.Mixfile do
      files: ["lib", "mix.exs", "README*", "CHANGELOG*"],
      maintainers: ["Benoit Tigeot"],
      licenses: ["MIT"],
-     links: %{"GitHub" => "https://github.com/benoittgt/PhubMe",
-              "Docs" => "https://github.com/benoittgt/PhubMe"}]
+     links: %{"GitHub" => "https://github.com/benoittgt/PhubMe"}]
   end
 end
