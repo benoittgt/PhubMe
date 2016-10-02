@@ -37,7 +37,7 @@ defmodule PhubMe.Mixfile do
       {:dogma, "~> 0.1", only: :dev},
       {:plug, "~> 1.0"},
       {:slack, "~> 0.7.0"},
-      {:websocket_client, git: "https://github.com/jeremyong/websocket_client"}
+      {:websocket_client, "~> 1.1.0" }
     ]
   end
 
