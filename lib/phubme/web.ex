@@ -13,7 +13,6 @@ defmodule PhubMe.Web do
   end
 
   def start_link do
-    IO.puts System.get_env("PORT")
     {:ok, _ } = Plug.Adapters.Cowboy.http PhubMe.Web, [], port: port(System.get_env("PORT"))
   end
 

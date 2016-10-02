@@ -1,4 +1,3 @@
-require IEx;
 defmodule PhubMe.Slack do
   def send_private_message({_comment, [], _sender, _source}) do
     IO.puts "All procceed"
