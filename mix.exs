@@ -43,7 +43,7 @@ defmodule PhubMe.Mixfile do
 
   defp package do
     [# These are the default files included in the package
-     name: :postgrex,
+     name: :phubme,
      files: ["lib", "mix.exs", "README*", "CHANGELOG*"],
      maintainers: ["Benoit Tigeot"],
      licenses: ["MIT"],
