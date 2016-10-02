@@ -12,6 +12,7 @@ defmodule PhubMe.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps,
+     package: package,
      preferred_cli_env: [
        vcr: :test, "vcr.delete": :test, "vrc.check": :test, "vcr.show": :test
      ]
@@ -38,5 +39,15 @@ defmodule PhubMe.Mixfile do
       {:slack, "~> 0.7.0"},
       {:websocket_client, git: "https://github.com/jeremyong/websocket_client"}
     ]
+  end
+
+  defp package do
+    [# These are the default files included in the package
+     name: :postgrex,
+     files: ["lib", "mix.exs", "README*", "CHANGELOG*"],
+     maintainers: ["Benoit Tigeot"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/benoittgt/PhubMe",
+              "Docs" => "https://github.com/benoittgt/PhubMe"}]
   end
 end
