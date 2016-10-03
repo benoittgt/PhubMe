@@ -5,6 +5,10 @@ defmodule PhubMeSlack do
   import ExUnit.CaptureIO
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
+  defp full_params_with_one_nick do
+    {"comment_with_nicknames", ["@hanaack"], "baxterthehacker", "https://github.com/comment"}
+  end
+
   defp full_params_with_nicks do
     {"comment_with_nicknames", ["@hanaack", "@lulu"], "baxterthehacker", "https://github.com/comment"}
   end
@@ -17,8 +21,14 @@ defmodule PhubMeSlack do
     HTTPoison.start
   end
 
-  describe "Without api_token" do
-    # test "Slack not able to connect"
+  describe "With wrong api_token" do
+    test "wrong api token" do
+      use_cassette "slack auth issue" do
+        assert_raise RuntimeError, "Failed to connect. Are you sure you add correct PHUB_ME_SLACK_API_TOKEN?" , fn ->
+          PhubMe.Slack.send_private_message(full_params_with_one_nick)
+        end
+      end
+    end
   end
 
   describe "With api_token" do
