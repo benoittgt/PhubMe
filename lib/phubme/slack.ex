@@ -1,4 +1,8 @@
 defmodule PhubMe.Slack do
+  def send_private_message({:error, error_message}) do
+    IO.puts "[PhubMe][Error] " <> error_message
+  end
+
   def send_private_message({_comment, [], _sender, _source}) do
     IO.puts "All procceed"
   end

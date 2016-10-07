@@ -29,5 +29,11 @@ defmodule CommentParser do
       assert PhubMe.CommentParser.process_comment(body_params(comment_without_nickname)) ==
         {comment_without_nickname, [], "baxterthehacker", "https://github.com/comment"}
     end
+
+    test "Parse no github message" do
+      assert_raise RuntimeError, "[PhubMe][Error] Not and issue comment" , fn ->
+        PhubMe.CommentParser.process_comment(%{ "test" => "rescue"})
+      end
+    end
   end
 end

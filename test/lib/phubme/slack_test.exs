@@ -9,6 +9,10 @@ defmodule PhubMeSlack do
     {"comment_with_nicknames", ["@hanaack"], "baxterthehacker", "https://github.com/comment"}
   end
 
+  defp full_params_without_nick do
+    {"comment_with_nicknames", [], "baxterthehacker", "https://github.com/comment"}
+  end
+
   defp full_params_with_nicks do
     {"comment_with_nicknames", ["@hanaack", "@lulu"], "baxterthehacker", "https://github.com/comment"}
   end
@@ -17,8 +21,26 @@ defmodule PhubMeSlack do
     {"comment_with_nicknames", ["@hannahslack", "@benoit"], "baxterthehacker", "https://github.com/comment"}
   end
 
+  defp incorrect_payload do
+    {:error, "Incorrect payload"}
+  end
+
   setup_all do
     HTTPoison.start
+  end
+
+  describe "Withoud nicks" do
+    test "invalide payload" do
+      assert capture_io(fn ->
+        PhubMe.Slack.send_private_message(incorrect_payload)
+      end) == "[PhubMe][Error] Incorrect payload\n"
+    end
+
+    test "returns all procceed" do
+      assert capture_io(fn ->
+        PhubMe.Slack.send_private_message(full_params_without_nick)
+      end) == "All procceed\n"
+    end
   end
 
   describe "With wrong api_token" do

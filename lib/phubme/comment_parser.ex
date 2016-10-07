@@ -10,6 +10,10 @@ defmodule PhubMe.CommentParser do
     {comment, nicknames, sender, source}
   end
 
+  defp extract_nicknames(nil) do
+    raise "[PhubMe][Error] Not and issue comment"
+  end
+
   defp extract_nicknames(comment) do
     matches = Regex.scan(@nickames_regex, comment, capture: :first)
     matches |> List.flatten
