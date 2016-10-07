@@ -1,6 +1,6 @@
 defmodule PhubMe.NicknamesMatcher do
   def match_nicknames({_, [], _, _}) do
-    {:error, "No nicknames found is this message"}
+    {:error, "No nicknames found in this message"}
   end
 
   def match_nicknames({full_comment, github_nicknames, sender, comment_parsed}) do

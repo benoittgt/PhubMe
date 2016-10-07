@@ -22,7 +22,7 @@ defmodule NicknamesMatcher do
 
   describe "PhubMe.NicknamesMatcher.match_nicknames/1" do
     test "no tuples received" do
-      assert PhubMe.NicknamesMatcher.match_nicknames(tuples_with_no_nicknames) ==  {:error, "No nicknames found is this message"}
+      assert PhubMe.NicknamesMatcher.match_nicknames(tuples_with_no_nicknames) ==  {:error, "No nicknames found in this message"}
     end
 
     test "nicknames received with two matching nicknames" do
