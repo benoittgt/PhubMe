@@ -8,13 +8,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Support no-issue comment payload from github
 - Support comment without matching nicknames
-###
+
+### Changed
 - The way I version my app. I failed.
 
 ## [0.0.3] - 2016-08-01
 ### Added
 - Add documentation - 8f5c2cf
 - Add heroku buildpack config
+
 ### Changed
 - Map correctly `plug` port with Heroku `$PORT`
 - Fail gracefully when wrong slack auth
@@ -24,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add SystemEnv request
 - Added slack support
+
 ### Changed
 - Change endpoint for POST request
 
