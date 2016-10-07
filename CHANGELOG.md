@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.4.0] - 2016-11-06
+### Added
+- Support no-issue comment payload from github
+- Support comment without matching nicknames
+###
+- The way I version my app. I failed.
+
 ## [0.0.3] - 2016-08-01
 ### Added
 - Add documentation - 8f5c2cf
