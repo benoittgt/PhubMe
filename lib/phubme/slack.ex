@@ -1,10 +1,12 @@
 defmodule PhubMe.Slack do
+  require Logger
+
   def send_private_message({:error, error_message}) do
-    IO.puts "[PhubMe][Error] " <> error_message
+    Logger.error("[PhubMe][Error] " <> error_message)
   end
 
   def send_private_message({_comment, [], _sender, _source}) do
-    IO.puts "All procceed"
+    Logger.info("All procceed")
   end
 
   def send_private_message({ comment, [nick_head | nick_tail], sender, source}) do
@@ -29,11 +31,10 @@ defmodule PhubMe.Slack do
   end
 
   defp no_matching_channel_message(nick) do
-    IO.puts "Not matching channel with the nickname "
-        <> nick <> ". Are you sure it exists?"
+    Logger.info("Not matching channel with the nickname " <> nick <> ". Are you sure it exists?")
   end
 
   defp matching_channel_message do
-    IO.puts "Matching channel found."
+    Logger.info("Matching channel found.")
   end
 end

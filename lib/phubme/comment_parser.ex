@@ -1,3 +1,4 @@
+require Logger
 defmodule PhubMe.CommentParser do
   @nickames_regex ~r{@([A-Za-z0-9_]+)}
 
@@ -6,7 +7,7 @@ defmodule PhubMe.CommentParser do
     sender = get_in(body_params, ["comment", "user", "login"])
     source = get_in(body_params, ["comment", "html_url"])
     nicknames = comment |> extract_nicknames
-    IO.puts "Processing comment : \"#{comment}\" from #{sender}"
+    Logger.info("Processing comment : \"#{comment}\" from #{sender}")
     {comment, nicknames, sender, source}
   end
 
