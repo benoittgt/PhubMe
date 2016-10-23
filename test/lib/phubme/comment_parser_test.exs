@@ -2,7 +2,7 @@ ExUnit.start
 
 defmodule CommentParser do
   use ExUnit.Case, async: true
-  import ExUnit.CaptureIO
+  import ExUnit.CaptureLog
 
   defp comment_with_nicknames, do: "Hey @HannahArrendt you should take a look at @lucie"
   defp comment_without_nickname, do: "Hello Hannah"
@@ -15,9 +15,9 @@ defmodule CommentParser do
 
   describe "PhubMe.CommentParser.process_comment/1" do
     test "Comment properly displayed" do
-      assert capture_io(fn ->
+      assert capture_log(fn ->
         PhubMe.CommentParser.process_comment(body_params(comment_with_nicknames))
-      end) == "Processing comment : \"Hey @HannahArrendt you should take a look at @lucie\" from baxterthehacker\n"
+    end) =~ "Processing comment : \"Hey @HannahArrendt you should take a look at @lucie\" from baxterthehacker\n"
     end
 
     test "Parse message with two nicknames" do
