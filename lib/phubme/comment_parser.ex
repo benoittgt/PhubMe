@@ -1,5 +1,5 @@
-require Logger
 defmodule PhubMe.CommentParser do
+  require Logger
   @nickames_regex ~r{@([A-Za-z0-9_]+)}
 
   def process_comment(body_params) do
