@@ -59,7 +59,7 @@ defmodule PhubMeSlack do
       use_cassette "slack channel not found" do
         assert capture_log(fn ->
           PhubMe.Slack.send_private_message(full_params_with_nicks)
-        end) =~ ~r(Matching channel found|All procceed)
+        end) =~ ~r(with the nickname @hanaack. Are you sure it exists|with the nickname @lulu|All procceed)
       end
     end
 
