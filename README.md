@@ -4,6 +4,10 @@
 
 Notify slack user when you are mentionned in a github comment
 
+## Disclaimer
+
+This is my first Elixir project. I'm looking for reviews and feedbacks about the code. Feel free to open an issue to comment the code or open a pull request.
+
 ## Installation
 
 It's [available in Hex](https://hex.pm/packages/phubme/0.0.3). The package can be installed with:
