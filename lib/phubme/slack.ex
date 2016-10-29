@@ -24,7 +24,8 @@ defmodule PhubMe.Slack do
   end
 
   defp formated_message(comment, sender, source) do
-    "You've been mentionned on " <> source <> " from " <> sender <> ". Comment is : " <> comment
+    "You've been mentionned on " <> source <> " from " <> sender <>
+    ". Comment is : " <> comment
   end
 
   defp slack_token do
@@ -36,7 +37,8 @@ defmodule PhubMe.Slack do
   end
 
   defp no_matching_channel_message(nick) do
-    Logger.info("Not matching channel with the nickname " <> nick <> ". Are you sure it exists?")
+    Logger.info("Not matching channel with the nickname " <>
+                nick <> ". Are you sure it exists?")
   end
 
   defp matching_channel_message do
