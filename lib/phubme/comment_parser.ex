@@ -9,6 +9,12 @@ defmodule PhubMe.CommentParser do
     nicknames = comment |> extract_nicknames
     Logger.info("Processing comment : \"#{comment}\" from #{sender}")
     {comment, nicknames, sender, source}
+    %Param{
+      source: source,
+      comment: comment,
+      nicknames: nicknames,
+      sender: sender
+    }
   end
 
   defp extract_nicknames(nil) do

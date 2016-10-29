@@ -7,19 +7,29 @@ defmodule PhubMeSlack do
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
   defp full_params_with_one_nick do
-    {"comment_with_nicknames", ["@hanaack"], "baxterthehacker", "https://github.com/comment"}
+    %Param{source: "https://github.com/comment",
+      comment: "comment_with_nicknames",
+      nicknames: ["@hanaack"], sender: "baxterthehacker"}
   end
 
   defp full_params_without_nick do
-    {"comment_with_nicknames", [], "baxterthehacker", "https://github.com/comment"}
+    %Param{source: "https://github.com/comment",
+      comment: "Hey @HannahArrendt you should take a look at @lucie",
+      nicknames: [], sender: "baxterthehacker"}
   end
 
   defp full_params_with_nicks do
-    {"comment_with_nicknames", ["@hanaack", "@lulu"], "baxterthehacker", "https://github.com/comment"}
+    %Param{source: "https://github.com/comment",
+      comment: "full comment",
+      nicknames: ["@hannahslack", "@lulu"],
+      sender: "baxterthehacker"}
   end
 
   defp full_params_with_correct_nicks do
-    {"comment_with_nicknames", ["@hannahslack", "@benoit"], "baxterthehacker", "https://github.com/comment"}
+    %Param{source: "https://github.com/comment",
+      comment: "full comment",
+      nicknames: ["@hannahslack", "@benoit"],
+      sender: "baxterthehacker"}
   end
 
   defp incorrect_payload do

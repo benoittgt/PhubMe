@@ -5,17 +5,22 @@ defmodule PhubMe.Slack do
     Logger.error("[PhubMe][Error] " <> error_message)
   end
 
-  def send_private_message({_comment, [], _sender, _source}) do
+  def send_private_message(%Param{nicknames: []}) do
     Logger.info("All procceed")
   end
 
-  def send_private_message({ comment, [nick_head | nick_tail], sender, source}) do
+  def send_private_message(%Param{comment: comment,
+                                  nicknames: [nick_head | nick_tail],
+                                  sender: sender, source: source}) do
     case Slack.Web.Chat.post_message(nick_head, formated_message(comment, sender, source), %{token: slack_token}) do
       %{"error" => "invalid_auth"} -> invalid_slack_auth_message
       %{"ok" => false} -> no_matching_channel_message(nick_head)
       _ -> matching_channel_message
     end
-    send_private_message({comment, nick_tail, sender, source})
+
+    send_private_message(%Param{comment: comment,
+                                nicknames: nick_tail,
+                                sender: sender, source: source})
   end
 
   defp formated_message(comment, sender, source) do
