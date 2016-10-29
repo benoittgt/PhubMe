@@ -8,8 +8,7 @@ defmodule PhubMe.CommentParser do
     source = get_in(body_params, ["comment", "html_url"])
     nicknames = comment |> extract_nicknames
     Logger.info("Processing comment : \"#{comment}\" from #{sender}")
-    {comment, nicknames, sender, source}
-    %Param{
+    %IssueComment{
       source: source,
       comment: comment,
       nicknames: nicknames,

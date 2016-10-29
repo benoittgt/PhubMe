@@ -11,13 +11,13 @@ defmodule NicknamesMatcher do
   defp comment_with_nicknames, do: "Hey @HannahArrendt you should take a look at @lucie"
   defp comment_without_nickname, do: "Hello Hannah"
   defp tuples_with_matching_nicknames do
-    %Param{comment: comment_with_nicknames, nicknames: ["@hannah", "@lucie"], sender: "baxterthehacker", source: "https://github.com/comment"}
+    %IssueComment{comment: comment_with_nicknames, nicknames: ["@hannah", "@lucie"], sender: "baxterthehacker", source: "https://github.com/comment"}
   end
   defp tuples_with_no_matching_nicknames do
-    %Param{comment: comment_with_nicknames, nicknames: ["@hnnah", "@luie"], sender: "baxterthehacker", source: "https://github.com/comment"}
+    %IssueComment{comment: comment_with_nicknames, nicknames: ["@hnnah", "@luie"], sender: "baxterthehacker", source: "https://github.com/comment"}
   end
   defp tuples_with_no_nicknames do
-    %Param{comment: comment_without_nickname, nicknames: [], sender: "baxterthehacker", source: "https://github.com/comment"}
+    %IssueComment{comment: comment_without_nickname, nicknames: [], sender: "baxterthehacker", source: "https://github.com/comment"}
   end
 
   describe "PhubMe.NicknamesMatcher.match_nicknames/1" do
@@ -27,7 +27,7 @@ defmodule NicknamesMatcher do
 
     test "nicknames received with two matching nicknames" do
       assert PhubMe.NicknamesMatcher.match_nicknames(tuples_with_matching_nicknames) ==
-        %Param{source: "https://github.com/comment",
+        %IssueComment{source: "https://github.com/comment",
           comment: "Hey @HannahArrendt you should take a look at @lucie",
           nicknames: ["@hannahslack", "@lulu"],
           sender: "baxterthehacker"}
@@ -35,7 +35,7 @@ defmodule NicknamesMatcher do
 
     test "nicknames received with no matching nickname" do
       assert PhubMe.NicknamesMatcher.match_nicknames(tuples_with_no_matching_nicknames) ==
-        %Param{source: "https://github.com/comment",
+        %IssueComment{source: "https://github.com/comment",
             comment: "Hey @HannahArrendt you should take a look at @lucie",
             nicknames: [], sender: "baxterthehacker"}
     end
