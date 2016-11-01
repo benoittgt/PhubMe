@@ -1,4 +1,7 @@
 defmodule PhubMe.NicknamesMatcher do
+  @moduledoc """
+  Replace nicknames found in the comment with nicknames that match ENV defined nicknames.
+  """
   def match_nicknames(%IssueComment{nicknames: []}) do
     {:error, "No nicknames found in this message"}
   end

@@ -1,5 +1,17 @@
 defmodule PhubMe.Slack do
   require Logger
+  @moduledoc """
+  Send message to slack.
+  With nicknames, it takes the %IssueComment struct :
+  * It sends a message to each nicknames then log "All procceed"
+
+  Without nicknames :
+  * It log "All procceed"
+
+  When error :
+  * It log the error message
+  All logs have specific level that can be defined in mix config per env.
+  """
 
   def send_private_message({:error, error_message}) do
     Logger.error("[PhubMe][Error] " <> error_message)

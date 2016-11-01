@@ -1,5 +1,10 @@
 defmodule PhubMe.CommentParser do
   require Logger
+  @moduledoc """
+  Parse comment and detect if they contains nicknames.
+  Every word that start with `@` will be included into `nicknames`.
+  `process_comment` returns a struct.
+  """
   @nickames_regex ~r{@([A-Za-z0-9_]+)}
 
   def process_comment(body_params) do

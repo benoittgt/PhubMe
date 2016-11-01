@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.13.0">
-    <title>PhubMe.NicknamesMatcher – phubme v0.4.1</title>
+    <title>IssueComment – phubme v0.4.1</title>
     <link rel="stylesheet" href="dist/app-9c1e3d5aa2.css" />
     
     <script src="dist/sidebar_items.js"></script>
@@ -60,46 +60,25 @@
 
       <h1>
         <small class="visible-xs">phubme v0.4.1</small>
-        PhubMe.NicknamesMatcher
+        IssueComment
         
         
       </h1>
 
       
         <section id="moduledoc" class="docstring">
-          <p>Replace nicknames found in the comment with nicknames that match ENV defined nicknames.</p>
-
-        </section>
-      
-
-      
-        <section id="summary" class="details-list">
-          <h1 class="section-heading">
-            <a class="hover-link" href="#summary">
-              <i class="icon-link"></i>
-            </a>
-            Summary
-          </h1>
-          
-
-          
-  <div class="summary-functions summary">
-    <h2>
-      <a href="#functions">Functions</a>
-    </h2>
-    <div class="summary-row">
-  <div class="summary-signature">
-    <a href="#match_nicknames/1">match_nicknames(issue_comment)</a>
-  </div>
-  
-</div>
-
-  </div>
-
-
-          
-
-          
+          <p>Struct that is use just after comment parsed :</p>
+<ul>
+<li><code class="inline">comment</code>: The full github comment
+</li>
+<li><code class="inline">nicknames</code>: Nicknames in the comment. They will be filtered to exclude no-matching
+nicknames.
+</li>
+<li><code class="inline">sender</code>: The nickname of the sender
+</li>
+<li><code class="inline">source</code>: The source of the comment (url)
+</li>
+</ul>
 
         </section>
       
@@ -107,29 +86,7 @@
       
 
       
-        <section id="functions" class="details-list">
-          <h1 class="section-heading">
-            <a class="hover-link" href="#functions">
-              <i class="icon-link"></i>
-            </a>
-            Functions
-          </h1>
-          <div class="detail" id="match_nicknames/1">
-  <div class="detail-header">
-    <a href="#match_nicknames/1" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">match_nicknames(issue_comment)</span>
-    
-    
-  </div>
-  
-  <section class="docstring">
-    
-  </section>
-</div>
 
-        </section>
       
 
       

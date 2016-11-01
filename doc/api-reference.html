@@ -8,8 +8,6 @@
     <title>API Reference – phubme v0.4.1</title>
     <link rel="stylesheet" href="dist/app-9c1e3d5aa2.css" />
     
-      <link rel="canonical" href="https://hexdocs.pm/phubme/api-reference.html" />
-    
     <script src="dist/sidebar_items.js"></script>
   </head>
   <body data-type="extras">
@@ -77,19 +75,53 @@
       <h1 class="section-heading">Modules</h1>
       <div class="summary">
         <div class="summary-row">
+  <div class="summary-signature"><a href="IssueComment.html">IssueComment</a></div>
+  
+    <div class="summary-synopsis"><p>Struct that is use just after comment parsed :</p>
+<ul>
+<li><code class="inline">comment</code>: The full github comment
+</li>
+<li><code class="inline">nicknames</code>: Nicknames in the comment. They will be filtered to exclude no-matching
+nicknames.
+</li>
+<li><code class="inline">sender</code>: The nickname of the sender
+</li>
+<li><code class="inline">source</code>: The source of the comment (url)
+</li>
+</ul>
+</div>
+  
+</div>
+<div class="summary-row">
   <div class="summary-signature"><a href="PhubMe.Api.html">PhubMe.Api</a></div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature"><a href="PhubMe.CommentParser.html">PhubMe.CommentParser</a></div>
   
+    <div class="summary-synopsis"><p>Parse comment and detect if they contains nicknames.
+Every word that start with <code class="inline">@</code> will be included into <code class="inline">nicknames</code>.
+<code class="inline">process_comment</code> returns a struct</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature"><a href="PhubMe.NicknamesMatcher.html">PhubMe.NicknamesMatcher</a></div>
   
+    <div class="summary-synopsis"><p>Replace nicknames found in the comment with nicknames that match ENV defined nicknames</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature"><a href="PhubMe.Slack.html">PhubMe.Slack</a></div>
+  
+    <div class="summary-synopsis"><p>Send message to slack.
+With nicknames, it takes the %IssueComment struct :</p>
+<ul>
+<li>It sends a message to each nicknames then log “All procceed”
+</li>
+</ul>
+</div>
   
 </div>
 <div class="summary-row">

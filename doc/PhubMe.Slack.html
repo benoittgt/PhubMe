@@ -8,8 +8,6 @@
     <title>PhubMe.Slack – phubme v0.4.1</title>
     <link rel="stylesheet" href="dist/app-9c1e3d5aa2.css" />
     
-      <link rel="canonical" href="https://hexdocs.pm/phubme/PhubMe.Slack.html" />
-    
     <script src="dist/sidebar_items.js"></script>
   </head>
   <body data-type="modules">
@@ -68,6 +66,27 @@
       </h1>
 
       
+        <section id="moduledoc" class="docstring">
+          <p>Send message to slack.
+With nicknames, it takes the %IssueComment struct :</p>
+<ul>
+<li>It sends a message to each nicknames then log “All procceed”
+</li>
+</ul>
+<p>Without nicknames :</p>
+<ul>
+<li>It log “All procceed”
+</li>
+</ul>
+<p>When error :</p>
+<ul>
+<li>It log the error message
+All logs have specific level that can be defined in mix config per env.
+</li>
+</ul>
+
+        </section>
+      
 
       
         <section id="summary" class="details-list">
@@ -86,7 +105,7 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#send_private_message/1">send_private_message(arg)</a>
+    <a href="#send_private_message/1">send_private_message(issue_comment)</a>
   </div>
   
 </div>
@@ -116,7 +135,7 @@
     <a href="#send_private_message/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">send_private_message(arg)</span>
+    <span class="signature">send_private_message(issue_comment)</span>
     
     
   </div>
