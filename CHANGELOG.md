@@ -4,10 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## HEAD
+## [0.4.1] - 2016-11-02
 - User elixir logger rather than IO.puts (https://github.com/benoittgt/PhubMe/pull/11)
+- Use struct for params flow (#13)
+- Add documentation for hex doc
 
-## [0.4.0] - 2016-11-06
+## [0.4.0] - 2016-10-06
 ### Added
 - Support no-issue comment payload from github
 - Support comment without matching nicknames
