@@ -10,7 +10,7 @@ This is my first Elixir project. I'm looking for reviews and feedbacks about the
 
 ## Installation
 
-It's [available in Hex](https://hex.pm/packages/phubme/0.0.3). The package can be installed with:
+It's [available in Hex](https://hex.pm/packages/phubme). The package can be installed with:
 
   1. Add phubme to your list of dependencies in `mix.exs`:
 
