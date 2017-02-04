@@ -3,8 +3,8 @@ defmodule PhubMe.Mixfile do
 
   def project do
     [app: :phubme,
-     version: "0.4.1",
-     elixir: "~> 1.3",
+     version: "0.5.1",
+     elixir: "~> 1.4",
      name: "phubme",
      description: "Notify mentionned github user in slack",
      licences: "MIT",
@@ -36,8 +36,7 @@ defmodule PhubMe.Mixfile do
       {:cowboy, "~> 1.0.3"},
       {:dogma, "~> 0.1", only: :dev},
       {:plug, "~> 1.0"},
-      {:slack, "~> 0.7.0"},
-      {:websocket_client, "~> 1.1.0" }
+      {:slack, "~> 0.9.3"}
     ]
   end
 
