@@ -43,13 +43,13 @@ defmodule PhubMeSlack do
   describe "Withoud nicks" do
     test "invalide payload" do
       assert capture_log(fn ->
-        PhubMe.Slack.send_private_message(incorrect_payload)
+        PhubMe.Slack.send_private_message(incorrect_payload())
       end) =~ "[PhubMe][Error] Incorrect payload\n"
     end
 
     test "returns all procceed" do
       assert capture_log(fn ->
-        PhubMe.Slack.send_private_message(full_params_without_nick)
+        PhubMe.Slack.send_private_message(full_params_without_nick())
       end) =~ "All procceed\n"
     end
   end
@@ -58,7 +58,7 @@ defmodule PhubMeSlack do
     test "wrong api token" do
       use_cassette "slack auth issue" do
         assert_raise RuntimeError, "Failed to connect. Are you sure you add correct PHUB_ME_SLACK_API_TOKEN?" , fn ->
-          PhubMe.Slack.send_private_message(full_params_with_one_nick)
+          PhubMe.Slack.send_private_message(full_params_with_one_nick())
         end
       end
     end
@@ -68,7 +68,7 @@ defmodule PhubMeSlack do
     test "Channel not found" do
       use_cassette "slack channel not found" do
         assert capture_log(fn ->
-          PhubMe.Slack.send_private_message(full_params_with_nicks)
+          PhubMe.Slack.send_private_message(full_params_with_nicks())
         end) =~ ~r(with the nickname @hanaack. Are you sure it exists|with the nickname @lulu|All procceed)
       end
     end
@@ -76,7 +76,7 @@ defmodule PhubMeSlack do
     test "Channel found" do
       use_cassette "slack channel found" do
         assert capture_log(fn ->
-          PhubMe.Slack.send_private_message(full_params_with_correct_nicks)
+          PhubMe.Slack.send_private_message(full_params_with_correct_nicks())
         end) =~ ~r(Matching channel found|All procceed)
       end
     end

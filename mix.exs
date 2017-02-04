@@ -3,16 +3,16 @@ defmodule PhubMe.Mixfile do
 
   def project do
     [app: :phubme,
-     version: "0.4.1",
-     elixir: "~> 1.3",
+     version: "0.5.2",
+     elixir: "~> 1.4",
      name: "phubme",
      description: "Notify mentionned github user in slack",
      licences: "MIT",
      maintainers: "Benoit Tigeot",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps,
-     package: package,
+     deps: deps(),
+     package: package(),
      preferred_cli_env: [
        vcr: :test, "vcr.delete": :test, "vrc.check": :test, "vcr.show": :test
      ]
@@ -36,8 +36,7 @@ defmodule PhubMe.Mixfile do
       {:cowboy, "~> 1.0.3"},
       {:dogma, "~> 0.1", only: :dev},
       {:plug, "~> 1.0"},
-      {:slack, "~> 0.7.0"},
-      {:websocket_client, "~> 1.1.0" }
+      {:slack, "~> 0.9.3"}
     ]
   end
 

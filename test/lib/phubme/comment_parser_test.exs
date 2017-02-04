@@ -16,12 +16,12 @@ defmodule CommentParser do
   describe "PhubMe.CommentParser.process_comment/1" do
     test "Comment properly displayed" do
       assert capture_log(fn ->
-        PhubMe.CommentParser.process_comment(body_params(comment_with_nicknames))
+        PhubMe.CommentParser.process_comment(body_params(comment_with_nicknames()))
     end) =~ "Processing comment : \"Hey @HannahArrendt you should take a look at @lucie\" from baxterthehacker\n"
     end
 
     test "Parse message with two nicknames" do
-      assert PhubMe.CommentParser.process_comment(body_params(comment_with_nicknames)) ==
+      assert PhubMe.CommentParser.process_comment(body_params(comment_with_nicknames())) ==
         %IssueComment{comment: "Hey @HannahArrendt you should take a look at @lucie",
                nicknames: ["@HannahArrendt", "@lucie"],
                sender: "baxterthehacker",
@@ -29,7 +29,7 @@ defmodule CommentParser do
     end
 
     test "Parse message with no nicknames" do
-      assert PhubMe.CommentParser.process_comment(body_params(comment_without_nickname)) ==
+      assert PhubMe.CommentParser.process_comment(body_params(comment_without_nickname())) ==
         %IssueComment{comment: "Hello Hannah", nicknames: [],
             sender: "baxterthehacker", source: "https://github.com/comment"}
     end

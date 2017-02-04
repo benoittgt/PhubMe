@@ -22,10 +22,10 @@ defmodule PhubMe.Slack do
   end
 
   def send_private_message(%IssueComment{nicknames: [nick_head | nick_tail]}=issue_comment) do
-    case Slack.Web.Chat.post_message(nick_head, formated_message(issue_comment), %{token: slack_token}) do
-      %{"error" => "invalid_auth"} -> invalid_slack_auth_message
+    case Slack.Web.Chat.post_message(nick_head, formated_message(issue_comment), %{token: slack_token()}) do
+      %{"error" => "invalid_auth"} -> invalid_slack_auth_message()
       %{"ok" => false} -> no_matching_channel_message(nick_head)
-      _ -> matching_channel_message
+      _ -> matching_channel_message()
     end
 
     send_private_message(%{ issue_comment | nicknames: nick_tail})
