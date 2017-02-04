@@ -11,8 +11,8 @@ defmodule PhubMe.Mixfile do
      maintainers: "Benoit Tigeot",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps,
-     package: package,
+     deps: deps(),
+     package: package(),
      preferred_cli_env: [
        vcr: :test, "vcr.delete": :test, "vrc.check": :test, "vcr.show": :test
      ]
