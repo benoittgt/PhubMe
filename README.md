@@ -15,7 +15,7 @@ It's [available in Hex](https://hex.pm/packages/phubme). The package can be inst
   1. Add phubme to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:phubme, "~> 0.5.2"}]
+          [{:phubme, "~> 0.5.3"}]
         end
 
   2. Ensure phubme is started before your application:
