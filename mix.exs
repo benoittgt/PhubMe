@@ -3,8 +3,8 @@ defmodule PhubMe.Mixfile do
 
   def project do
     [app: :phubme,
-     version: "0.5.2",
-     elixir: "~> 1.4",
+     version: "0.5.3",
+     elixir: "~> 1.3",
      name: "phubme",
      description: "Notify mentionned github user in slack",
      licences: "MIT",
