@@ -3,8 +3,7 @@ defmodule PhubMe.Web do
   require Logger
 
   plug Plug.Logger
-  plug Plug.Parsers, parsers: [:json],
-                     json_decoder: Poison
+  plug Plug.Parsers, parsers: [:json], json_decoder: Poison
   plug :match
   plug :dispatch
 
@@ -25,13 +24,18 @@ defmodule PhubMe.Web do
   end
 
   post "/phubme" do
-    PhubMe.CommentParser.process_comment(conn.body_params)
-    |> PhubMe.NicknamesMatcher.match_nicknames
-    |> PhubMe.Slack.send_private_message
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, "ok")
-    |> halt
+    cond do
+      valid_github_payload?(conn.body_params, conn.req_headers) ->
+        conn
+        |> put_resp_content_type("application/json")
+        |> send_resp(200, "ok")
+        |> halt
+      true ->
+        conn
+        |> put_resp_content_type("application/json")
+        |> send_resp(404, "")
+        |> halt
+    end
   end
 
   match _ do
@@ -39,5 +43,18 @@ defmodule PhubMe.Web do
     |> put_resp_content_type("application/json")
     |> send_resp(404, "")
     |> halt
+  end
+
+  def valid_github_payload?(body_params, req_headers) do
+    cond do
+      Map.has_key?(body_params, "issue") &&
+        req_headers == [{"x-github-event", "issue_comment"}, {"content-type", "application/json"}] ->
+        PhubMe.CommentParser.process_comment(body_params)
+        |> PhubMe.NicknamesMatcher.match_nicknames
+        |> PhubMe.Slack.send_private_message
+      Map.has_key?(body_params, "hook") &&
+        req_headers == [{"x-github-event", "ping"}, {"content-type", "application/json"}] -> true
+      true -> false
+    end
   end
 end
