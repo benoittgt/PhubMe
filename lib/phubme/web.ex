@@ -12,15 +12,8 @@ defmodule PhubMe.Web do
   end
 
   def start_link do
-    {:ok, _ } = Plug.Adapters.Cowboy.http(PhubMe.Web,
-                                          [],
-                                          port: port(System.get_env("PORT")))
-  end
-
-  def port(nil), do: 8080
-
-  def port(value) do
-    String.to_integer(value)
+    adapeur_port = String.to_integer(System.get_env("PORT") || "8080")
+    {:ok, _ } = Plug.Adapters.Cowboy.http(PhubMe.Web, [], port: adapeur_port)
   end
 
   post "/phubme" do
