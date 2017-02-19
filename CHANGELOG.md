@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.5.4] - 2017-02-19
+- Fix crash when github test endpoint at webhook creation (#14)
+- Calls need to have github key in the header (#14)
+
+## [0.5.3] - 2017-02-04
+- Be able to use Elixir 1.3 and 1.4
+
+## [0.5.2] - 2017-02-04
+- Update dependencies and jump to elixir 1.4.1
+
 ## [0.4.1] - 2016-11-02
 - User elixir logger rather than IO.puts (https://github.com/benoittgt/PhubMe/pull/11)
 - Use struct for params flow (#13)

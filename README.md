@@ -4,10 +4,6 @@
 
 Notify slack user when you are mentionned in a github comment
 
-## Disclaimer
-
-This is my first Elixir project. I'm looking for reviews and feedbacks about the code. Feel free to open an issue to comment the code or open a pull request.
-
 ## Installation
 
 It's [available in Hex](https://hex.pm/packages/phubme). The package can be installed with:
@@ -15,7 +11,7 @@ It's [available in Hex](https://hex.pm/packages/phubme). The package can be inst
   1. Add phubme to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:phubme, "~> 0.5.3"}]
+          [{:phubme, "~> 0.5.4"}]
         end
 
   2. Ensure phubme is started before your application:
