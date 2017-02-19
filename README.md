@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/benoittgt/PhubMe.svg)](https://travis-ci.org/benoittgt/PhubMe)
 
-Notify slack user when you are mentionned in a github comment
+Notify a slack user when the user is mentionned in a github comment.
 
 ## Installation
 
