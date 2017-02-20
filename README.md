@@ -2,25 +2,18 @@
 
 [![Build Status](https://travis-ci.org/benoittgt/PhubMe.svg)](https://travis-ci.org/benoittgt/PhubMe)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
 Notify a slack user when the user is mentionned in a github comment.
 
 ## Installation
 
-It's [available in Hex](https://hex.pm/packages/phubme). The package can be installed with:
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-  1. Add phubme to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:phubme, "~> 0.5.4"}]
-        end
-
-  2. Ensure phubme is started before your application:
-
-        def application do
-          [applications: [:phubme]]
-        end
+Or get the project and :
+```sh
+$ mix deps.get
+$ iex -S mix run --no-halt
+```
+You can specify the `PORT` using env variable. By default it's 8080.
 
 ## Setup
 
