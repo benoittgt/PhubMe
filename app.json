@@ -1,0 +1,17 @@
+{
+  "name": "PhubMe",
+  "description": "Notify a slack user when the user is mentionned in a github comment.",
+  "repository": "https://github.com/benoittgt/PhubMe",
+  "keywords": ["elixir", "slack", "github", "notification"],
+  "env": {
+    "PHUBME_SLACK_TOKEN": {
+      "description": "The slack token to make call",
+      "value": "x-xxxxx"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/HashNuke/heroku-buildpack-elixir"
+    }
+  ]
+}
