@@ -17,7 +17,7 @@ defmodule PhubMe.Web do
   end
 
   post "/phubme" do
-    if valid_github_payload?(conn.body_params, conn.req_headers) do
+    if valid_github_payload?(conn.body_params, get_req_header(conn, "x-github-event")) do
       handle_github_payload(conn.body_params)
       conn
       |> put_resp_content_type("application/json")
@@ -38,9 +38,9 @@ defmodule PhubMe.Web do
     |> halt
   end
 
-  defp valid_github_payload?(%{"issue" => _issue}, [{"x-github-event", "issue_comment"}, __content_type]), do: true
-  defp valid_github_payload?(%{"hook" => _hook}, [{"x-github-event", "ping"}, _content_type]), do: true
-  defp valid_github_payload?(_body_params, _req_headers), do: false
+  defp valid_github_payload?(%{"issue" => _issue}, ["issue_comment"]), do: true
+  defp valid_github_payload?(%{"hook" => _hook}, ["ping"]), do: true
+  defp valid_github_payload?(_body_params, _req_header), do: false
 
   defp handle_github_payload(%{"issue" => _issue} = body_params) do
     PhubMe.CommentParser.process_comment(body_params)
