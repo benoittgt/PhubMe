@@ -36,7 +36,7 @@ defmodule PhubMe.Mixfile do
       {:cowboy, "~> 1.0.3"},
       {:dogma, "~> 0.1", only: :dev},
       {:plug, "~> 1.0"},
-      {:slack, "~> 0.9.3"}
+      {:slack, "~> 0.11.0"}
     ]
   end
 
