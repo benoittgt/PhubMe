@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.5.5] - 2017-03-31
+- Manage case when the slack bot is deactivated. Notify it on logs.
+- Update dependencies
+
 ## [0.5.4] - 2017-02-19
 - Fix crash when github test endpoint at webhook creation (#14)
 - Calls need to have github key in the header (#14)
