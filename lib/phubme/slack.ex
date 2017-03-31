@@ -24,7 +24,8 @@ defmodule PhubMe.Slack do
   def send_private_message(%IssueComment{nicknames: [nick_head | nick_tail]}=issue_comment) do
     case Slack.Web.Chat.post_message(nick_head, formated_message(issue_comment), %{token: slack_token()}) do
       %{"error" => "invalid_auth"} -> invalid_slack_auth_message()
-      %{"ok" => false} -> no_matching_channel_message(nick_head)
+      %{"ok" => false, "error" => "no_channel_found"} -> no_matching_channel_message(nick_head)
+      %{"ok" => false, "error" => "account_inactive"} -> account_inactive()
       _ -> matching_channel_message()
     end
 
@@ -51,5 +52,9 @@ defmodule PhubMe.Slack do
 
   defp matching_channel_message do
     Logger.info("Matching channel found.")
+  end
+
+  defp account_inactive do
+    Logger.info("Slack bot account seems unactivated")
   end
 end

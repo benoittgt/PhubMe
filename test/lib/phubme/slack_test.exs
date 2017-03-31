@@ -77,7 +77,15 @@ defmodule PhubMeSlack do
       use_cassette "slack channel found" do
         assert capture_log(fn ->
           PhubMe.Slack.send_private_message(full_params_with_correct_nicks())
-        end) =~ ~r(Matching channel found|All procceed)
+        end) =~ ~r(Matching channel found)
+      end
+    end
+
+    test "account_inactive" do
+      use_cassette "account_inactive" do
+        assert capture_log(fn ->
+          PhubMe.Slack.send_private_message(full_params_with_nicks())
+        end) =~ ~r(Slack bot account seems unactivated)
       end
     end
   end
