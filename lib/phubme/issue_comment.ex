@@ -1,6 +1,6 @@
 defmodule IssueComment do
   @moduledoc """
-  Struct that is use just after comment parsed :
+  Struct that is used just after comment parsed :
   * `comment`: The full github comment
   * `nicknames`: Nicknames in the comment. They will be filtered to exclude no-matching
   nicknames.
