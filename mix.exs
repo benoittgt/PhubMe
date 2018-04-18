@@ -3,8 +3,8 @@ defmodule PhubMe.Mixfile do
 
   def project do
     [app: :phubme,
-     version: "0.5.5",
-     elixir: "~> 1.3",
+     version: "0.6.5",
+     elixir: "~> 1.6",
      name: "phubme",
      description: "Notify mentionned github user in slack",
      licences: "MIT",
@@ -27,14 +27,13 @@ defmodule PhubMe.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.8"},
-      {:ex_doc,    "~> 0.11"},
-      {:earmark,   ">= 0.0.0"},
-      {:poison,    "~> 1.5"},
-      {:exvcr,     "~> 0.7", only: :test},
+      {:ex_doc, "~> 0.11"},
+      {:earmark, ">= 0.0.0"},
+      {:poison, "~> 1.5"},
+      {:exvcr, "~> 0.7", only: :test},
       {:mix_test_watch, "~> 0.2", only: :dev},
       {:dogma, "~> 0.1", only: :dev},
       {:cowboy, "~> 1.0.3"},
-      {:dogma, "~> 0.1", only: :dev},
       {:plug, "~> 1.0"},
       {:slack, "~> 0.11.0"}
     ]
